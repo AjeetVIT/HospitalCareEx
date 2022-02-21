@@ -10,7 +10,7 @@ import in.nareshit.ajeet.hc.entity.Specialization;
 import in.nareshit.ajeet.hc.repo.SpecializtionRepository;
 import in.nareshit.ajeet.hc.service.ISpecializationService;
 @Service
-public class SpecializationImpl implements ISpecializationService {
+public class SpecializationServiceImpl implements ISpecializationService {
 	@Autowired
 	private SpecializtionRepository repo;
 
