@@ -33,12 +33,7 @@ public class SpecializationServiceImpl implements ISpecializationService {
 	}
 
 	
-	@Override
-	public void updateSpecialization(Specialization spec) {
-		// TODO Auto-generated method stub
-		repo.save(spec);
-
-	}
+	
 
 	@Override
 	public Specialization getOneSpecialization(Long id) {
@@ -50,6 +45,12 @@ public class SpecializationServiceImpl implements ISpecializationService {
 			
 		
 		return null;
-	}
+	}}
+		@Override
+		public void updateSpecialization(Specialization spec) {
+			// TODO Auto-generated method stub
+			repo.save(spec);
 
-}}
+		}
+
+}

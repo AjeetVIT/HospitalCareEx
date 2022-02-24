@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import in.nareshit.ajeet.hc.entity.Specialization;
 import in.nareshit.ajeet.hc.service.ISpecializationService;
@@ -42,18 +43,35 @@ public class SpecializationController {
 	/**
 	 * 3.Display All Specialization**/
 	@GetMapping("/all")
-	public String viewAll(Model model) {
+	public String viewAll(Model model,
+			@RequestParam(value="message",required=false)String message) {
 		List<Specialization> list = service.getAllSpecializations();
 		model.addAttribute("list", list);
+		model.addAttribute("message",message);
 		return "SpecializationData";
 		
 	}
 /***
  * 4. Delete By Id**/
 	@GetMapping("/delete")
-	public String deleteData(@RequestParam Long id) {
+	public String deleteData(@RequestParam Long id,
+			RedirectAttributes attrbutes) {
 		service.removeSpecialization(id);
+		attrbutes.addAttribute("message", "Record ("+id+") is Removed");
 		return "redirect:all";
+		
+	}
+	/****
+	 * 5. Fetch Data From Edit Page
+	 * ****/
+	@GetMapping("/edit")
+	public String showEditPage(
+			@RequestParam Long id, 
+			Model model)
+	{
+		Specialization spec = service.getOneSpecialization(id);
+		model.addAttribute("specialization", spec);
+		return "SpecializationEdit";
 		
 	}
 }
